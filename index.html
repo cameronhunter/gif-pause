@@ -8,34 +8,16 @@
     <h1>Click to play/pause</h1>
 
     <img src="catdancing.gif" />
+    <img src="catdancing.gif" />
+    <img src="catdancing.gif" />
+    <img src="catdancing.gif" />
 
+    <script src="gif-pause.js"></script>
     <script>
-      var gif = document.querySelector('img[src$=".gif"]');
-      var originalDisplay = gif.style.display;
-
-      var canvas = document.createElement('canvas');
-      var ctx = canvas.getContext('2d');
-
-      var slate = new Image();
-      slate.onload = function() {
-        canvas.width = this.width;
-        canvas.height = this.height;
-        ctx.drawImage(this, 0, 0);
-      };
-      slate.src = gif.src;
-
-      canvas.addEventListener('click', function() {
-        canvas.style.display = 'none';
-        gif.style.display = originalDisplay;
-      }, false);
-
-      gif.addEventListener('click', function() {
-        gif.style.display = 'none';
-        canvas.style.display = originalDisplay;
-      }, false);
-
-      gif.style.display = 'none';
-      gif.parentNode.insertBefore(canvas, gif);
+      var gifs = document.querySelectorAll('img[src$=".gif"]');
+      for(var i=0, l=gifs.length; i<l; i++) {
+        new AnimatedGIF(gifs[i]).pause();
+      }
     </script>
 
   </body>
